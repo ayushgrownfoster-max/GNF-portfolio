@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Growth-green accent: literal nod to "Grow N Foster" rather than a
+     decorative brand color. Swap this one variable to re-skin the whole
+     site (eventually this can be piped in from a WordPress "Site Settings"
+     ACF options page). */
+  --accent: #C9F31D;
+  --accent-dim: #9FC414;
+}
+
+html {
+  background: #ffffff;
+  color: #111111;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #111111;
+}
+
+/* Custom cursor is desktop-only; see components/CustomCursor.tsx */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-none-desktop {
+    cursor: none;
+  }
+}
+
+/* Marquee track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll linear infinite;
+}
+.marquee-track[data-dir="reverse"] {
+  animation-direction: reverse;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
