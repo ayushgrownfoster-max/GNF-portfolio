@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
-//import CaseStudyCard from "@/components/CaseStudyCard";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import ServiceList from "@/components/ServiceList";
 import Marquee from "@/components/Marquee";
 import ClientMarquee from "@/components/ClientMarquee";
@@ -58,7 +58,16 @@ export default async function HomePage() {
             </Link>
           </div>
 
-
+          <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2">
+            {featured.map((cs, i) => {
+              const size = layoutPattern[i % layoutPattern.length];
+              return (
+                <div key={cs.slug} className={size !== "medium" ? "md:col-span-2" : undefined}>
+                  <CaseStudyCard caseStudy={cs} size={size} priority={i === 0} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
