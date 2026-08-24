@@ -94,7 +94,6 @@ function HoverImage({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ y: translateY }}
       initial={{ opacity: 0, x: 24, scale: 0.92 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
       transition={{
@@ -104,6 +103,7 @@ function HoverImage({
       }}
       className="relative flex-none cursor-pointer overflow-hidden rounded-xl bg-mist shadow-sm hover:shadow-md transition-shadow duration-300"
       style={{
+        y: translateY,
         width: "clamp(96px, 13vw, 152px)",
         height: "clamp(64px, 8.5vw, 104px)",
       }}
