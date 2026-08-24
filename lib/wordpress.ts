@@ -5,6 +5,7 @@ import type {
   Testimonial,
   Insight,
   SiteStat,
+  PortfolioProject,
 } from "./types";
 
 /**
@@ -116,6 +117,22 @@ export async function getInsights(): Promise<Insight[]> {
 
 export async function getInsightBySlug(slug: string): Promise<Insight | undefined> {
   return PLACEHOLDER_INSIGHTS.find((i) => i.slug === slug);
+}
+
+// ---------------------------------------------------------------------------
+// Portfolio / projects
+// ---------------------------------------------------------------------------
+
+export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
+  return PLACEHOLDER_PORTFOLIO;
+}
+
+export async function getPortfolioProjectBySlug(slug: string): Promise<PortfolioProject | undefined> {
+  return PLACEHOLDER_PORTFOLIO.find((p) => p.slug === slug);
+}
+
+export async function getPortfolioProjectsByCategory(category: "mern" | "wordpress" | "squarespace"): Promise<PortfolioProject[]> {
+  return PLACEHOLDER_PORTFOLIO.filter((p) => p.category === category);
 }
 
 // ---------------------------------------------------------------------------
@@ -553,4 +570,190 @@ const PLACEHOLDER_INSIGHTS: Insight[] = [
     publishedAt: "2026-04-22",
     readingTime: 7,
   },
+];
+
+export const PLACEHOLDER_PORTFOLIO: PortfolioProject[] = [
+  // --- MERN STACK ---
+  {
+    slug: "veloce-saas-analytics",
+    title: "Veloce SaaS Analytics",
+    category: "mern",
+    description: "A real-time metrics dashboard offering dynamic reporting, live user monitoring, and modular charting templates.",
+    longDescription: "Veloce SaaS is a custom business intelligence platform designed to handle high-throughput event streaming. Built on MongoDB, Express, React, and Node.js, the system processes over 10 million daily active events, rendering interactive data tables, drag-and-drop widget layouts, and instantaneous PDF report generation. We streamlined the DB query pipelines to achieve sub-50ms API responses.",
+    tags: ["MERN", "SaaS", "Dashboard"],
+    techStack: ["MongoDB", "Express", "React", "Node.js", "TailwindCSS", "Chart.js", "Websockets"],
+    client: "Veloce Tech",
+    year: 2026,
+    thumbnail: img("photo-1551288049-bebda4e38f71"),
+    screenshots: [
+      img("photo-1551288049-bebda4e38f71"),
+      img("photo-1460925895917-afdab827c52f"),
+      img("photo-1504868584819-f8e8b4b6d7e3")
+    ],
+    liveUrl: "https://veloce-analytics.demo",
+    challenge: "Processing high volumes of user behavior event data in real time and visualizing it without causing client-side rendering bottlenecks or database lockups.",
+    solution: "We integrated redis caching alongside MongoDB aggregation pipelines and implemented a virtualized dashboard list system in React for smooth scrolling over millions of records."
+  },
+  {
+    slug: "pulse-ecommerce-marketplace",
+    title: "Pulse E-commerce Marketplace",
+    category: "mern",
+    description: "A full-featured multi-vendor e-commerce platform with rich catalog filters, instant search, and integrated Stripe payments.",
+    longDescription: "Pulse Marketplace is a modular storefront supporting thousands of concurrent shoppers and merchant storefronts. Featuring server-side rendering for optimal SEO, advanced fuzzy search query logic, and automated vendor payout routing via Stripe Connect. The administration interface provides comprehensive inventory tracking and order fulfillment tracking.",
+    tags: ["MERN", "E-commerce", "Stripe"],
+    techStack: ["React", "Node.js", "Express", "MongoDB", "Redux Toolkit", "Stripe API", "ElasticSearch"],
+    client: "Pulse Group",
+    year: 2025,
+    thumbnail: img("photo-1531403009284-440f080d1e12"),
+    screenshots: [
+      img("photo-1531403009284-440f080d1e12"),
+      img("photo-1555066931-4365d14bab8c"),
+      img("photo-1522542550221-31fd19575a2d")
+    ],
+    liveUrl: "https://pulse-shop.demo",
+    challenge: "Synchronizing multi-vendor inventory changes, real-time checkout locks, and managing high traffic spikes during product drops.",
+    solution: "Implemented transactional database constraints and distributed job queues using BullMQ to handle concurrent checkout logic and inventory updates."
+  },
+  {
+    slug: "omnitask-workspace",
+    title: "OmniTask Teams",
+    category: "mern",
+    description: "A real-time project management and collaboration suite featuring Kanban boards, live chat, and team workspaces.",
+    longDescription: "OmniTask is a web-based workflow platform for creative agencies. It utilizes Socket.io to keep kanban boards, task descriptions, comment sections, and user presence markers in perfect sync across all active team members. Features include drag-and-drop timeline planning, automated daily summaries, and integrations with Slack and Google Drive.",
+    tags: ["MERN", "Collaboration", "Productivity"],
+    techStack: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Framer Motion", "TailwindCSS"],
+    client: "Omni Labs Ltd",
+    year: 2026,
+    thumbnail: img("photo-1618005182384-a83a8bd57fbe"),
+    screenshots: [
+      img("photo-1618005182384-a83a8bd57fbe"),
+      img("photo-1611162617213-7d7a39e9b1d7"),
+      img("photo-1581291518633-83b4ebd1d83e")
+    ],
+    liveUrl: "https://omnitask-teams.demo",
+    challenge: "Handling message queues and resolving merge conflicts when multiple users edited the same task cards concurrently.",
+    solution: "Used operational transformation algorithms and real-time cursor tracking to show who is editing what, locking specific sub-fields during active typing."
+  },
+  // --- WORDPRESS ---
+  {
+    slug: "aether-capital-vc",
+    title: "Aether Capital Website",
+    category: "wordpress",
+    description: "An editorial-style website for a venture capital firm featuring custom post types, Gutenberg blocks, and dynamic portfolio filters.",
+    longDescription: "Aether Capital is a modern venture firm representing high-growth startups. We engineered a custom WordPress theme from scratch utilizing Advanced Custom Fields (ACF) and Gutenberg blocks. This enables their internal marketing team to spin up new portfolio showcases, investment news, and founder spotlight pages in seconds, all while maintaining perfect layout control and design system compliance.",
+    tags: ["WordPress", "Custom Theme", "ACF Pro"],
+    techStack: ["WordPress", "PHP", "TailwindCSS", "Alpine.js", "ACF Pro", "WP GraphQL"],
+    client: "Aether Ventures",
+    year: 2025,
+    thumbnail: img("photo-1486406146926-c627a92ad1ab"),
+    screenshots: [
+      img("photo-1486406146926-c627a92ad1ab"),
+      img("photo-1497366216548-37526070297c"),
+      img("photo-1507679799987-c73779587ccf")
+    ],
+    liveUrl: "https://aether-vc.demo",
+    challenge: "Delivering a highly custom layout with sophisticated typography and page layout flexibility for editors without sacrificing loading speed.",
+    solution: "Built a block-based component system in PHP/Tailwind, compiling assets dynamically and caching page structures aggressively using WP Rocket and Cloudflare."
+  },
+  {
+    slug: "solstice-luxury-estore",
+    title: "Solstice Luxury Store",
+    category: "wordpress",
+    description: "A premium WooCommerce boutique featuring custom checkout optimization and high-performance product filters.",
+    longDescription: "Solstice is an international luxury apparel brand. We converted their standard WooCommerce installation into a high-converting editorial e-store. Complete with AJAX-based cart drawers, multi-currency localization, smart tax calculation APIs, and a custom Gutenberg-based product story builder that blends lifestyle content with commerce.",
+    tags: ["WordPress", "WooCommerce", "AJAX"],
+    techStack: ["WordPress", "WooCommerce", "PHP", "TailwindCSS", "Vanilla JS", "Stripe Gateway"],
+    client: "Solstice Apparel Group",
+    year: 2025,
+    thumbnail: img("photo-1441986300917-64674bd600d8"),
+    screenshots: [
+      img("photo-1441986300917-64674bd600d8"),
+      img("photo-1511556532299-8f662fc26c06"),
+      img("photo-1441984904996-e0b6ba687e04")
+    ],
+    liveUrl: "https://solstice-boutique.demo",
+    challenge: "Combating high shopping cart abandonment rate and optimizing image asset load times for hundreds of high-resolution product photos.",
+    solution: "We restructured the checkout flow into a single-page interactive app, deferred non-critical JS resources, and configured WebP image compression pipelines."
+  },
+  {
+    slug: "vanguard-design-agency",
+    title: "Vanguard Design Portfolio",
+    category: "wordpress",
+    description: "An interactive, typography-centric agency portfolio showcasing media and branding campaigns.",
+    longDescription: "Vanguard is a creative brand consultancy. We built an immersive WordPress portfolio featuring dynamic WebGL page transitions, customized project pages, and an integrated blog CMS. The site leverages native Gutenberg blocks mapping directly to React frontend components via a headless API.",
+    tags: ["WordPress", "Creative Portfolio", "Headless"],
+    techStack: ["WordPress CMS", "Next.js", "TailwindCSS", "Framer Motion", "Three.js", "GraphQL"],
+    client: "Vanguard Creative",
+    year: 2026,
+    thumbnail: img("photo-1542744094-3a31f103e35f"),
+    screenshots: [
+      img("photo-1542744094-3a31f103e35f"),
+      img("photo-1507238691740-187a5b1d37b8"),
+      img("photo-1531538606174-0f90ff5dce83")
+    ],
+    liveUrl: "https://vanguard-agency.demo",
+    challenge: "Implementing high-fidelity page transitions and custom interactive components while allowing non-technical editors to control page hierarchy and content fields.",
+    solution: "Created a headless Next.js frontend querying WordPress via WPGraphQL, utilizing dynamic layout blocks mapping custom Gutenberg elements."
+  },
+  // --- SQUARESPACE ---
+  {
+    slug: "lumiere-photo-studio",
+    title: "Lumiere Photography Studio",
+    category: "squarespace",
+    description: "A minimal, image-centric photography portfolio built using Squarespace's fluid engine and custom CSS injection.",
+    longDescription: "Lumiere Studio is a high-fashion photography agency. We built their digital home using Squarespace, utilizing custom CSS injection, customized grid systems, and custom layouts. The site provides a clean, grid-based portfolio gallery with lazy loading and high-fidelity image displays.",
+    tags: ["Squarespace", "Custom CSS", "Fluid Engine"],
+    techStack: ["Squarespace", "Custom CSS", "Javascript", "Fluid Engine", "Adobe Fonts"],
+    client: "Lumiere Studio Group",
+    year: 2026,
+    thumbnail: img("photo-1516035069371-29a1b244cc32"),
+    screenshots: [
+      img("photo-1516035069371-29a1b244cc32"),
+      img("photo-1500485035595-cbe6f645feb1"),
+      img("photo-1554080353-a576cf803bda")
+    ],
+    liveUrl: "https://lumiere-studio.squarespace.com",
+    challenge: "Overcoming standard grid layout limitations in Squarespace to achieve an asymmetrical, editorial magazine-style aesthetic.",
+    solution: "Engineered responsive CSS custom grids and media query overrides, utilizing CSS variables to adjust positioning of text and image overlays."
+  },
+  {
+    slug: "savor-dining-wine",
+    title: "Savor Dining & Wine Restaurant",
+    category: "squarespace",
+    description: "An elegant, interactive restaurant showcase page featuring menu navigation and integrated reservation modules.",
+    longDescription: "Savor is a fine-dining restaurant based in New York. We built their Squarespace site around a visual storytelling flow. Complete with responsive menu tabs, custom typography integration, OpenTable booking widgets, and social media media streams.",
+    tags: ["Squarespace", "OpenTable Integration", "Web Design"],
+    techStack: ["Squarespace", "Custom CSS", "OpenTable API", "Google Maps API", "Fluid Layouts"],
+    client: "Savor Restaurant Group",
+    year: 2025,
+    thumbnail: img("photo-1517248135467-4c7edcad34c4"),
+    screenshots: [
+      img("photo-1517248135467-4c7edcad34c4"),
+      img("photo-1555396273-367ea4eb4db5"),
+      img("photo-1550966871-3ed3cdb5ed0c")
+    ],
+    liveUrl: "https://savor-dining.squarespace.com",
+    challenge: "Integrating custom menu displays and booking popups that render natively across all devices without slow load times.",
+    solution: "Used Squarespace's developer modes to inject custom scripts and structured HTML blocks, optimizing images and minimizing font weights."
+  },
+  {
+    slug: "bespoke-living-interiors",
+    title: "Bespoke Living Interiors",
+    category: "squarespace",
+    description: "An immersive, image-rich portfolio page for a boutique luxury interior design studio.",
+    longDescription: "Bespoke Living focuses on luxury home architecture. We built a gorgeous Squarespace portfolio showcasing projects room-by-room. The site incorporates custom parallax scroll actions, image sliders, and detailed client testimonial sections.",
+    tags: ["Squarespace", "Parallax Design", "Interior Design"],
+    techStack: ["Squarespace", "Custom CSS", "Javascript", "Google Fonts", "Fluid Engine"],
+    client: "Bespoke Living Interiors",
+    year: 2026,
+    thumbnail: img("photo-1618221195710-dd6b41faaea6"),
+    screenshots: [
+      img("photo-1618221195710-dd6b41faaea6"),
+      img("photo-1616486338812-3dadae4b4ace"),
+      img("photo-1615529182904-14819c35db37")
+    ],
+    liveUrl: "https://bespoke-living.squarespace.com",
+    challenge: "Creating smooth parallax scroll effects and a fluid project slide deck within the constraints of the standard Squarespace platform.",
+    solution: "Injected lightweight custom JS scrolling listeners and styled custom CSS animations to create bespoke parallax behaviors."
+  }
 ];

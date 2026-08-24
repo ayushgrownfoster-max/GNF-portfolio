@@ -1,16 +1,16 @@
 import type { MetadataRoute } from "next";
-import { getCaseStudies, getInsights } from "@/lib/wordpress";
+import { getCaseStudies, getPortfolioProjects } from "@/lib/wordpress";
 
 const BASE_URL = "https://www.grownfoster.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [caseStudies, insights] = await Promise.all([
+  const [caseStudies, portfolioProjects] = await Promise.all([
     getCaseStudies(),
-    getInsights(),
+    getPortfolioProjects(),
   ]);
 
   const staticRoutes = [
-    "", "/work", "/services", "/about", "/insights", "/contact",
+    "", "/work", "/services", "/about", "/portfolio", "/contact",
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
@@ -21,10 +21,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  const insightRoutes = insights.map((i) => ({
-    url: `${BASE_URL}/insights/${i.slug}`,
-    lastModified: new Date(i.publishedAt),
+  const portfolioRoutes = portfolioProjects.map((p) => ({
+    url: `${BASE_URL}/portfolio/${p.slug}`,
+    lastModified: new Date(), // Using default current date since we don't have publishedAt on projects
   }));
 
-  return [...staticRoutes, ...caseStudyRoutes, ...insightRoutes];
+  return [...staticRoutes, ...caseStudyRoutes, ...portfolioRoutes];
 }

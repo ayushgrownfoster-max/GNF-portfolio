@@ -10,12 +10,49 @@ const NAV_LINKS = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Insights", href: "/insights" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
 
+/* ─── Logo typing pill ─── */
+const LOGO_TAGS = ["Case Studies", "Portfolio", "Branding", "SEO", "Social"];
+
+function useLogoTypewriter(phrases: string[], speed = 65, pause = 2200, del = 40) {
+  const [text, setText] = useState("");
+  const [idx, setIdx] = useState(0);
+  const [char, setChar] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = phrases[idx];
+    if (!deleting && char < current.length) {
+      const t = setTimeout(() => setChar((c) => c + 1), speed);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && char === current.length) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && char > 0) {
+      const t = setTimeout(() => setChar((c) => c - 1), del);
+      return () => clearTimeout(t);
+    }
+    if (deleting && char === 0) {
+      setDeleting(false);
+      setIdx((i) => (i + 1) % phrases.length);
+    }
+  }, [char, deleting, idx, phrases, speed, pause, del]);
+
+  useEffect(() => {
+    setText(phrases[idx].slice(0, char));
+  }, [char, idx, phrases]);
+
+  return text;
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const logoTag = useLogoTypewriter(LOGO_TAGS);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -33,12 +70,26 @@ export default function Header() {
         "fixed inset-x-0 top-0 z-[900] transition-all duration-500 ease-grow",
         scrolled
           ? "bg-paper/90 backdrop-blur-md py-3 shadow-[0_1px_0_rgba(0,0,0,0.06)]"
-          : "bg-transparent py-6"
+          : "bg-transparent py-5"
       )}
     >
       <div className="mx-auto flex max-w-site items-center justify-between px-6 md:px-10">
-        <Link href="/" className="font-display text-lg font-semibold tracking-tight">
-          Grow N&nbsp;Foster
+        {/* Logo + typing tag */}
+        <Link href="/" className="flex items-center gap-0 group">
+          <span className="font-display text-lg font-semibold tracking-tight">
+            Grow N&nbsp;Foster
+          </span>
+          {/* Dot separator + typing pill */}
+          <span className="ml-2 flex items-center gap-1.5 text-ink/40 text-sm font-medium transition-all">
+            <span className="text-ink/25 font-bold">·</span>
+            <span
+              className="text-[11px] font-semibold tracking-wide text-ink/50 overflow-hidden whitespace-nowrap"
+              style={{ minWidth: "80px" }}
+            >
+              {logoTag}
+              <span className="inline-block w-[1.5px] h-[0.85em] bg-ink/40 ml-0.5 align-middle animate-blink" />
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

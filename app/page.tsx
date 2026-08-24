@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
-import CaseStudyCard from "@/components/CaseStudyCard";
+//import CaseStudyCard from "@/components/CaseStudyCard";
 import ServiceList from "@/components/ServiceList";
 import Marquee from "@/components/Marquee";
 import ClientMarquee from "@/components/ClientMarquee";
 import CaseStudyStats from "@/components/CaseStudyStats";
 import Testimonial from "@/components/Testimonial";
-import InsightCard from "@/components/InsightCard";
+import PortfolioShowcase from "@/components/PortfolioShowcase";
 import RevealText from "@/components/RevealText";
 import MagneticButton from "@/components/MagneticButton";
 import {
@@ -16,7 +16,7 @@ import {
   getClients,
   getSiteStats,
   getTestimonials,
-  getInsights,
+  getPortfolioProjects,
 } from "@/lib/wordpress";
 
 export const revalidate = 300;
@@ -26,14 +26,14 @@ const MARQUEE_WORDS = [
 ];
 
 export default async function HomePage() {
-  const [featured, services, clients, siteStats, testimonials, insights] =
+  const [featured, services, clients, siteStats, testimonials, portfolioProjects] =
     await Promise.all([
       getFeaturedCaseStudies(),
       getServices(),
       getClients(),
       getSiteStats(),
       getTestimonials(),
-      getInsights(),
+      getPortfolioProjects(),
     ]);
 
   // Large / two small / large / horizontal editorial pattern from the brief.
@@ -58,16 +58,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2">
-            {featured.map((cs, i) => {
-              const size = layoutPattern[i % layoutPattern.length];
-              return (
-                <div key={cs.slug} className={size !== "medium" ? "md:col-span-2" : undefined}>
-                  <CaseStudyCard caseStudy={cs} size={size} priority={i === 0} />
-                </div>
-              );
-            })}
-          </div>
+
         </div>
       </section>
 
@@ -140,25 +131,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Insights teaser */}
-      <section className="px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-site">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading eyebrow="Insights" lines={["Thinking Out Loud"]} />
-            <Link
-              href="/insights"
-              className="text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
-            >
-              View all insights →
-            </Link>
-          </div>
-          <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3">
-            {insights.map((insight) => (
-              <InsightCard key={insight.slug} insight={insight} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Portfolio Showcase */}
+      <PortfolioShowcase projects={portfolioProjects} />
 
       {/* Contact CTA */}
       <section className="px-6 pb-28 pt-8 md:px-10">

@@ -1,41 +1,58 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 import RevealText from "./RevealText";
-import MagneticButton from "./MagneticButton";
 
-/* ─── Scroll-expand hero images ─── */
-const HERO_IMAGES = [
-  { seed: "photo-1522202176988-66273c2fd55f", alt: "Creative team collaborating on brand strategy" },
-  { seed: "photo-1497366216548-37526070297c", alt: "Modern agency workspace" },
+/* ─── Typing Effect Hook ─── */
+function useTypewriter(phrases: string[], speed = 55, pauseMs = 2000, deleteSpeed = 30) {
+  const [displayed, setDisplayed] = useState("");
+  const [phraseIdx, setPhraseIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = phrases[phraseIdx];
+    if (!deleting && charIdx < current.length) {
+      const t = setTimeout(() => setCharIdx((c) => c + 1), speed);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && charIdx === current.length) {
+      const t = setTimeout(() => setDeleting(true), pauseMs);
+      return () => clearTimeout(t);
+    }
+    if (deleting && charIdx > 0) {
+      const t = setTimeout(() => setCharIdx((c) => c - 1), deleteSpeed);
+      return () => clearTimeout(t);
+    }
+    if (deleting && charIdx === 0) {
+      setDeleting(false);
+      setPhraseIdx((i) => (i + 1) % phrases.length);
+    }
+  }, [charIdx, deleting, phraseIdx, phrases, speed, pauseMs, deleteSpeed]);
+
+  useEffect(() => {
+    setDisplayed(phrases[phraseIdx].slice(0, charIdx));
+  }, [charIdx, phraseIdx, phrases]);
+
+  return displayed;
+}
+
+const TAGLINES = [
+  "Brands that grow.",
+  "Stories that stick.",
+  "Digital that converts.",
+  "Creative that performs.",
+  "Marketing with meaning.",
 ];
 
-function ScrollExpandImage({ seed, alt, index }: { seed: string; alt: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-
-  const scaleX = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0.65, 1, 1, 1, 0.65]);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], ["24px", "0px", "0px", "0px", "24px"]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className="relative mx-auto overflow-hidden mt-4"
-      style={{ scaleX, borderRadius, height: "clamp(260px, 32vw, 520px)", width: "100%", transformOrigin: "center" }}
-    >
-      <Image
-        src={`https://images.unsplash.com/${seed}?w=2400&h=1200&fit=crop`}
-        alt={alt}
-        fill
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
-    </motion.div>
-  );
-}
+const STATS = [
+  { value: "250+", label: "Projects Delivered" },
+  { value: "85+", label: "Brands Grown" },
+  { value: "3.8×", label: "Average ROAS" },
+  { value: "12+", label: "Industries" },
+];
 
 /* ─── Main Hero Component ─── */
 export default function Hero() {
@@ -44,8 +61,10 @@ export default function Hero() {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacityBg = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  const typedText = useTypewriter(TAGLINES);
+
   return (
-    <section ref={containerRef} className="relative flex flex-col pt-32 pb-16 overflow-hidden min-h-screen">
+    <section ref={containerRef} className="relative flex flex-col pt-20 pb-0 overflow-hidden">
       {/* Ambient background */}
       <motion.div
         aria-hidden
@@ -56,22 +75,67 @@ export default function Hero() {
       />
 
       <div className="mx-auto w-full max-w-site px-6 md:px-10 flex flex-col z-10">
-        
-        {/* Top Content: Massive Text */}
-        <div className="w-full pt-10 lg:pt-16 pb-12">
+
+        {/* ── Hero Text Block ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full pt-6 pb-4"
+        >
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-6 bg-ink/30" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-ink/45">
+              Creative &amp; Digital Agency — Mumbai, India
+            </span>
+          </div>
+
+          {/* H1 Headline */}
           <RevealText
             as="h1"
             lines={["Your Creative, Media &", "Technology", "Transformation Partner"]}
-            className="font-display text-[2.5rem] leading-[1.1] md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-ink tracking-tight"
+            className="font-display text-[2.4rem] leading-[1.06] md:text-[3.8rem] lg:text-[5rem] xl:text-[6rem] font-bold text-ink tracking-tight"
           />
-        </div>
 
-        {/* Bottom Content: Full Width Video */}
+          {/* Typing tagline — large, prominent */}
+          <div className="mt-4 flex flex-wrap items-baseline gap-x-2 min-h-[3rem]">
+            <span className="font-display text-2xl md:text-3xl text-ink/40 font-light">
+              We build
+            </span>
+            <span className="font-display text-2xl md:text-3xl font-bold text-ink">
+              {typedText}
+              <span className="inline-block w-[2.5px] h-[0.9em] bg-ink ml-1 align-middle animate-blink" />
+            </span>
+          </div>
+        </motion.div>
+
+        {/* ── Stats Strip ── */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full relative h-[60vh] lg:h-[80vh] min-h-[500px] rounded-t-3xl overflow-hidden shadow-2xl"
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-wrap gap-x-8 gap-y-3 py-4 border-y border-ink/8 mb-5"
+        >
+          {STATS.map((s) => (
+            <div key={s.label} className="flex items-baseline gap-2">
+              <span className="font-display text-2xl md:text-3xl font-bold text-ink">{s.value}</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-ink/40">{s.label}</span>
+            </div>
+          ))}
+          <div className="ml-auto hidden md:flex items-center gap-2 text-xs font-medium text-ink/50">
+            <Link href="/work" className="hover:text-ink transition-colors underline underline-offset-4 decoration-ink/20 hover:decoration-ink">
+              View our work →
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* ── Full Width Video ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full relative h-[55vh] lg:h-[72vh] min-h-[420px] rounded-t-3xl overflow-hidden shadow-2xl"
           style={{ y: yBg, opacity: opacityBg }}
         >
           <video
@@ -82,18 +146,32 @@ export default function Hero() {
             playsInline
             className="w-full h-full object-cover"
           />
-          {/* Subtle overlay */}
-          <div className="absolute inset-0 bg-ink/20" />
-        </motion.div>
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/10 via-transparent to-ink/40" />
 
-      {/* Hero images strip — scroll-expand effect below the fold */}
-      <div className="mt-8 w-full z-10">
-        <div className="flex flex-col gap-4">
-          {HERO_IMAGES.map((img, i) => (
-            <ScrollExpandImage key={img.seed} {...img} index={i} />
-          ))}
-        </div>
+          {/* Overlay text on video */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-paper/60 mb-1">
+                  Our Story
+                </p>
+                <p className="font-display text-xl md:text-2xl font-semibold text-paper max-w-sm leading-snug">
+                  We don't just market brands. We help them grow.
+                </p>
+              </div>
+
+              {/* Floating badge */}
+              <div className="bg-paper/90 backdrop-blur-md rounded-2xl px-5 py-3.5 shadow-xl border border-ink/5 self-start md:self-auto">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-ink/40 mb-1">
+                  Results-Driven Agency
+                </p>
+                <p className="font-display text-sm font-semibold text-ink">
+                  250+ Projects · 85+ Brands · 3.8× ROAS
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

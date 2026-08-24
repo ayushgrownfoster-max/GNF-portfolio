@@ -108,3 +108,21 @@ export interface SiteStat {
   value: string;
   label: string;
 }
+
+export interface PortfolioProject {
+  slug: string;
+  title: string;
+  category: "mern" | "wordpress" | "squarespace";
+  description: string;
+  longDescription: string;
+  tags: string[];
+  techStack: string[];
+  thumbnail: Media;
+  screenshots: Media[];
+  liveUrl?: string;
+  client: string;
+  year: number;
+  challenge?: string;
+  solution?: string;
+}
+

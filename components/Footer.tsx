@@ -26,7 +26,7 @@ export default function Footer() {
             <Link href="/work" className="hover:text-paper transition-colors">Work</Link>
             <Link href="/services" className="hover:text-paper transition-colors">Services</Link>
             <Link href="/about" className="hover:text-paper transition-colors">About</Link>
-            <Link href="/insights" className="hover:text-paper transition-colors">Insights</Link>
+            <Link href="/portfolio" className="hover:text-paper transition-colors">Portfolio</Link>
           </div>
           <div className="flex flex-col gap-2">
             <a href="mailto:hello@grownfoster.com" className="hover:text-paper transition-colors">hello@grownfoster.com</a>
