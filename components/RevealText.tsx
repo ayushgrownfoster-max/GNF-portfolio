@@ -14,6 +14,11 @@ interface RevealTextProps {
  * Reveals an array of lines one after another, each masked by its own
  * overflow-hidden wrapper so the text slides up from below rather than
  * fading in place. Used for the hero headline and section titles.
+ *
+ * NOTE: Uses `animate` (not `whileInView`) so it always fires on mount.
+ * whileInView can silently skip on client-side navigation when the element
+ * is already in the viewport before the Intersection Observer attaches,
+ * leaving text permanently hidden behind overflow:hidden.
  */
 export default function RevealText({
   lines,
@@ -28,8 +33,7 @@ export default function RevealText({
           <motion.span
             className="block"
             initial={{ y: "110%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-10% 0px" }}
+            animate={{ y: "0%" }}
             transition={{
               duration: 0.9,
               ease: [0.22, 1, 0.36, 1],
@@ -43,3 +47,4 @@ export default function RevealText({
     </Tag>
   );
 }
+
