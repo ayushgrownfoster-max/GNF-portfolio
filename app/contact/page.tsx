@@ -124,18 +124,6 @@ export default function ContactPage() {
           {/* Left Column: Context & Contact Info */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-10">
             <div>
-              {/* Image aligned with the top of the form card on the right */}
-              <div className="relative mb-6 h-40 w-full overflow-hidden rounded-3xl border border-ink/10 shadow-xl md:h-48">
-                <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
-                  alt="Grow N Foster Studio Workspace"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 480px"
-                  unoptimized
-                />
-              </div>
-
               <span className="inline-block mb-4 text-xs font-semibold uppercase tracking-widest text-ink/50">
                 Let's Connect
               </span>

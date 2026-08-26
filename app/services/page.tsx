@@ -11,7 +11,7 @@ export default async function ServicesPage() {
   const services = await getServices();
 
   return (
-    <main className="min-h-screen pt-32 pb-24 md:pt-40">
+    <main className="flex-1 pt-32 pb-24 md:pt-40 overflow-hidden">
       <div className="mx-auto max-w-site px-6 md:px-10">
         {/* Header */}
         <div className="mb-20 md:mb-32 max-w-3xl">
