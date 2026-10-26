@@ -4,8 +4,8 @@ import RevealText from "@/components/RevealText";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | Twinkle Singhal",
-  description: "Start a project or book a lead generation consultation with Twinkle Singhal.",
+  title: "Contact | Twinka Singhal",
+  description: "Start a project or book a lead generation consultation with Twinka Singhal.",
 };
 
 // Studio workspace images with verified Unsplash URLs

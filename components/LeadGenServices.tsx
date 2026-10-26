@@ -481,6 +481,38 @@ const SERVICE_GROUPS: ServiceGroup[] = [
 
 export default function LeadGenServices() {
   const [activeTab, setActiveTab] = useState<string>("all");
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
+    linkedin: true, // LinkedIn outreach expanded by default
+  });
+
+  const toggleGroup = (id: string) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    if (tabId !== "all") {
+      setExpandedGroups((prev) => ({
+        ...prev,
+        [tabId]: true,
+      }));
+    }
+  };
+
+  const expandAll = () => {
+    const all: Record<string, boolean> = {};
+    SERVICE_GROUPS.forEach((g) => {
+      all[g.id] = true;
+    });
+    setExpandedGroups(all);
+  };
+
+  const collapseAll = () => {
+    setExpandedGroups({});
+  };
 
   const displayedGroups =
     activeTab === "all"
@@ -497,120 +529,180 @@ export default function LeadGenServices() {
             lines={["Services that", "bring you leads"]}
           />
           <p className="mt-6 text-base md:text-lg text-ink/70 leading-relaxed max-w-2xl">
-            Every service below is a way to put qualified buyers in front of your business. The client work behind each service is shown below it.
+            Every service below is a way to put qualified buyers in front of your business. Click any service to expand and explore the client work behind it.
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="mt-12 flex flex-wrap gap-2 border-b border-ink/10 pb-6">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={clsx(
-              "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all",
-              activeTab === "all"
-                ? "bg-ink text-paper"
-                : "bg-mist/70 text-ink/70 hover:bg-mist hover:text-ink"
-            )}
-          >
-            All Services (34 Projects)
-          </button>
-          {SERVICE_GROUPS.map((grp) => (
+        {/* Filter Pills & Expand Actions */}
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-b border-ink/10 pb-6">
+          <div className="flex flex-wrap gap-2">
             <button
-              key={grp.id}
-              onClick={() => setActiveTab(grp.id)}
+              onClick={() => handleTabChange("all")}
               className={clsx(
                 "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all",
-                activeTab === grp.id
+                activeTab === "all"
                   ? "bg-ink text-paper"
                   : "bg-mist/70 text-ink/70 hover:bg-mist hover:text-ink"
               )}
             >
-              {grp.number} {grp.title}
+              All Services (34 Projects)
             </button>
-          ))}
+            {SERVICE_GROUPS.map((grp) => (
+              <button
+                key={grp.id}
+                onClick={() => handleTabChange(grp.id)}
+                className={clsx(
+                  "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all",
+                  activeTab === grp.id
+                    ? "bg-ink text-paper"
+                    : "bg-mist/70 text-ink/70 hover:bg-mist hover:text-ink"
+                )}
+              >
+                {grp.number} {grp.title}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={expandAll}
+              className="text-xs font-semibold text-ink/60 hover:text-ink px-3 py-1.5 rounded-full border border-ink/15 hover:border-ink hover:bg-mist/40 transition-all"
+            >
+              Expand all +
+            </button>
+            <button
+              onClick={collapseAll}
+              className="text-xs font-semibold text-ink/60 hover:text-ink px-3 py-1.5 rounded-full border border-ink/15 hover:border-ink hover:bg-mist/40 transition-all"
+            >
+              Collapse all −
+            </button>
+          </div>
         </div>
 
         {/* Services & Client Project Cards */}
-        <div className="mt-16 space-y-24">
-          {displayedGroups.map((group) => (
-            <div key={group.id} className="relative">
-              {/* Category Header Strip */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-ink/15">
-                <div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-display text-accent-dim font-bold text-xl md:text-2xl">
-                      {group.number}
-                    </span>
-                    <h3 className="font-display text-2xl md:text-4xl font-bold text-ink">
-                      {group.title}
-                    </h3>
+        <div className="mt-12 space-y-6">
+          {displayedGroups.map((group) => {
+            const isExpanded = !!expandedGroups[group.id];
+
+            return (
+              <div
+                key={group.id}
+                className="relative rounded-3xl border border-ink/10 bg-mist/20 p-6 md:p-8 transition-all hover:border-ink/25 hover:shadow-sm"
+              >
+                {/* Category Header Strip — Clickable */}
+                <div
+                  onClick={() => toggleGroup(group.id)}
+                  className="cursor-pointer group/header flex flex-col md:flex-row md:items-center justify-between gap-4 select-none"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <span className="font-display text-accent-dim font-bold text-xl md:text-2xl">
+                        {group.number}
+                      </span>
+                      <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-ink group-hover/header:text-accent-dim transition-colors">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <p className="mt-2 text-sm md:text-base text-ink/65 max-w-2xl">
+                      {group.subtitle}
+                    </p>
                   </div>
-                  <p className="mt-2 text-sm md:text-base text-ink/65 max-w-2xl">
-                    {group.subtitle}
-                  </p>
-                </div>
-                <div className="self-start md:self-auto shrink-0">
-                  <span className="inline-block rounded-full bg-mist px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink/70 border border-ink/10">
-                    {group.projectCount}
-                  </span>
-                </div>
-              </div>
 
-              {/* Cards Grid */}
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {group.clients.map((client, idx) => (
-                  <motion.div
-                    key={`${client.client}-${idx}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-5% 0px" }}
-                    transition={{
-                      duration: 0.5,
-                      delay: (idx % 6) * 0.06,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="flex flex-col justify-between rounded-2xl bg-[#141414] p-6 text-paper border border-white/10 hover:border-white/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-                  >
-                    <div>
-                      {/* Top tag & industry pill */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-accent/90">
-                          {client.tag}
-                        </span>
-                        <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] font-medium text-white/60">
-                          {client.industry}
-                        </span>
+                  <div className="flex items-center gap-3 self-start md:self-center shrink-0">
+                    <span className="inline-block rounded-full bg-paper px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink/70 border border-ink/10">
+                      {group.projectCount}
+                    </span>
+
+                    {/* Plus / Minus Expand Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleGroup(group.id);
+                      }}
+                      aria-expanded={isExpanded}
+                      aria-label={`${isExpanded ? "Collapse" : "Expand"} ${group.title}`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 bg-paper text-ink shadow-sm transition-all duration-300 group-hover/header:bg-ink group-hover/header:text-paper group-hover/header:border-ink"
+                    >
+                      <motion.span
+                        animate={{ rotate: isExpanded ? 45 : 0 }}
+                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-2xl font-light leading-none select-none"
+                      >
+                        +
+                      </motion.span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Expandable Cards Grid */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      key={`content-${group.id}`}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-8 pt-8 border-t border-ink/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {group.clients.map((client, idx) => (
+                          <motion.div
+                            key={`${client.client}-${idx}`}
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              duration: 0.35,
+                              delay: (idx % 6) * 0.04,
+                              ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="flex flex-col justify-between rounded-2xl bg-[#141414] p-6 text-paper border border-white/10 hover:border-white/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
+                          >
+                            <div>
+                              {/* Top tag & industry pill */}
+                              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-accent/90">
+                                  {client.tag}
+                                </span>
+                                <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] font-medium text-white/60">
+                                  {client.industry}
+                                </span>
+                              </div>
+
+                              {/* Client Title */}
+                              <h4 className="font-display text-lg md:text-xl font-bold text-paper mb-2.5 group-hover:text-accent transition-colors">
+                                {client.client}
+                              </h4>
+
+                              {/* Brief description */}
+                              <p className="text-xs md:text-sm text-paper/70 leading-relaxed">
+                                {client.description}
+                              </p>
+                            </div>
+
+                            {/* Metrics Strip */}
+                            <div className="mt-6 pt-5 border-t border-white/10 grid grid-cols-3 gap-2">
+                              {client.metrics.map((m, mIdx) => (
+                                <div key={mIdx} className="flex flex-col">
+                                  <span className="font-display text-base md:text-lg font-bold text-paper">
+                                    {m.value}
+                                  </span>
+                                  <span className="text-[10px] uppercase tracking-wider text-paper/50 leading-tight mt-0.5">
+                                    {m.label}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        ))}
                       </div>
-
-                      {/* Client Title */}
-                      <h4 className="font-display text-lg md:text-xl font-bold text-paper mb-2.5 group-hover:text-accent transition-colors">
-                        {client.client}
-                      </h4>
-
-                      {/* Brief description */}
-                      <p className="text-xs md:text-sm text-paper/70 leading-relaxed">
-                        {client.description}
-                      </p>
-                    </div>
-
-                    {/* Metrics Strip */}
-                    <div className="mt-6 pt-5 border-t border-white/10 grid grid-cols-3 gap-2">
-                      {client.metrics.map((m, mIdx) => (
-                        <div key={mIdx} className="flex flex-col">
-                          <span className="font-display text-base md:text-lg font-bold text-paper">
-                            {m.value}
-                          </span>
-                          <span className="text-[10px] uppercase tracking-wider text-paper/50 leading-tight mt-0.5">
-                            {m.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import ServiceList from "@/components/ServiceList";
 import RevealText from "@/components/RevealText";
 
 export const metadata = {
-  title: "Services | Twinkle Singhal",
+  title: "Services | Twinka Singhal",
   description: "Lead generation, LinkedIn outreach, cold email, SEO & AEO, and paid performance marketing capabilities.",
 };
 

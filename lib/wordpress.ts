@@ -517,7 +517,7 @@ const PLACEHOLDER_CLIENTS: Client[] = [
 
 const PLACEHOLDER_TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Twinkle's SEO and AI search visibility strategy delivered 187,000+ monthly organic visitors and hundreds of citations across AI search engines.",
+    quote: "Twinka's SEO and AI search visibility strategy delivered 187,000+ monthly organic visitors and hundreds of citations across AI search engines.",
     name: "Enterprise SaaS Lead",
     designation: "VP Marketing",
     company: "ThoughtSpot",

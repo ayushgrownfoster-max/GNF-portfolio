@@ -45,7 +45,7 @@ export default function AboutSection() {
 
           <div className="lg:col-span-6 space-y-6 text-base md:text-lg text-ink/75 leading-relaxed pt-2">
             <p>
-              I&apos;m <strong className="text-ink font-semibold">Twinkle Singhal</strong>, a digital marketing and lead generation specialist with <strong className="text-ink font-semibold">10+ years of experience</strong> working with clients across India, the USA, the UK, Canada, Australia, Dubai and the GCC.
+              I&apos;m <strong className="text-ink font-semibold">Twinka Singhal</strong>, a digital marketing and lead generation specialist with <strong className="text-ink font-semibold">10+ years of experience</strong> working with clients across India, the USA, the UK, Canada, Australia, Dubai and the GCC.
             </p>
             <p>
               I believe in real client relationships. My own growth is tied to yours, so I plan carefully, keep you updated and focus on results you can measure: booked meetings, qualified pipeline, top search rankings, and predictable ROAS.

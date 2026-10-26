@@ -32,7 +32,7 @@ export default function Footer() {
 
         <div className="mt-24 grid grid-cols-2 gap-10 border-t border-paper/15 pt-10 text-sm text-paper/70 md:grid-cols-4">
           <div>
-            <p className="mb-3 font-display font-semibold text-paper text-base">Twinkle Singhal.</p>
+            <p className="mb-3 font-display font-semibold text-paper text-base">Twinka Singhal.</p>
             <p className="leading-relaxed">
               Lead generation, SEO and performance marketing for businesses that want to grow.
             </p>
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-paper/15 pt-6 text-xs text-paper/50 md:flex-row md:items-center md:justify-between pb-6">
-          <span>&copy; {new Date().getFullYear()} Twinkle Singhal. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Twinka Singhal. All rights reserved.</span>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-paper transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-paper transition-colors">Terms of Work</Link>
@@ -92,7 +92,7 @@ export default function Footer() {
               className="font-display uppercase font-bold tracking-tighter"
               style={{ fontSize: "105px" }}
             >
-              TWINKLE SINGHAL
+              TWINKA SINGHAL
             </text>
           </svg>
         </div>

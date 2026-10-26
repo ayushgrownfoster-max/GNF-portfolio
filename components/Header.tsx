@@ -77,7 +77,7 @@ export default function Header() {
         {/* Logo + typing tag */}
         <Link href="/" className="flex items-center gap-0 group">
           <span className="font-display text-lg font-bold tracking-tight">
-            Twinkle Singhal<span className="text-accent-dim font-bold">.</span>
+            Twinka Singhal<span className="text-accent-dim font-bold">.</span>
           </span>
           {/* Dot separator + typing pill */}
           <span className="ml-2 flex items-center gap-1.5 text-ink/40 text-sm font-medium transition-all">

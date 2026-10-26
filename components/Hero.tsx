@@ -164,7 +164,7 @@ export default function Hero() {
             <div className="max-w-xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-accent mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-                ABOUT TWINKLE SINGHAL
+                ABOUT TWINKA SINGHAL
               </span>
               <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-paper leading-snug">
                 I don&apos;t just run campaigns. <br className="hidden sm:inline" />

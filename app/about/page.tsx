@@ -9,7 +9,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Twinkle Singhal is a digital marketing and lead generation specialist with 10+ years of experience working with clients globally.",
+    "Twinka Singhal is a digital marketing and lead generation specialist with 10+ years of experience working with clients globally.",
 };
 
 export default async function AboutPage() {
@@ -20,7 +20,7 @@ export default async function AboutPage() {
       <section className="px-6 pb-20 pt-40 md:px-10">
         <div className="mx-auto max-w-site">
           <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">
-            About Twinkle Singhal
+            About Twinka Singhal
           </span>
           <RevealText
             as="h1"
@@ -28,7 +28,7 @@ export default async function AboutPage() {
             className="font-display text-display-lg text-balance"
           />
           <p className="mt-10 max-w-2xl text-lg text-ink/70 leading-relaxed">
-            I&apos;m Twinkle Singhal, a digital marketing specialist with 10+ years of experience working with clients across India, the USA, the UK, Canada, Australia, Dubai and the GCC. I believe in real client relationships. My own growth is tied to yours, so I plan carefully, keep you updated and focus on results you can measure.
+            I&apos;m Twinka Singhal, a digital marketing specialist with 10+ years of experience working with clients across India, the USA, the UK, Canada, Australia, Dubai and the GCC. I believe in real client relationships. My own growth is tied to yours, so I plan carefully, keep you updated and focus on results you can measure.
           </p>
         </div>
       </section>

@@ -22,17 +22,17 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.twinklesinghal.com"),
+  metadataBase: new URL("https://www.twinkasinghal.com"),
   title: {
-    default: "Twinkle Singhal — Lead Generation & Digital Marketing Specialist",
-    template: "%s | Twinkle Singhal",
+    default: "Twinka Singhal — Lead Generation & Digital Marketing Specialist",
+    template: "%s | Twinka Singhal",
   },
   description:
-    "Twinkle Singhal is a lead generation and digital marketing specialist with 10+ years of experience helping businesses scale through LinkedIn outreach, cold email, SEO, and paid performance ads.",
+    "Twinka Singhal is a lead generation and digital marketing specialist with 10+ years of experience helping businesses scale through LinkedIn outreach, cold email, SEO, and paid performance ads.",
   openGraph: {
     type: "website",
-    siteName: "Twinkle Singhal",
-    title: "Twinkle Singhal — Lead Generation & Digital Marketing Specialist",
+    siteName: "Twinka Singhal",
+    title: "Twinka Singhal — Lead Generation & Digital Marketing Specialist",
     description:
       "Qualified B2B leads, measured performance, and business growth across India, USA, UK, Canada & GCC.",
   },
