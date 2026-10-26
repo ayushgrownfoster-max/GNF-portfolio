@@ -141,10 +141,10 @@ export async function getPortfolioProjectsByCategory(category: "mern" | "wordpre
 
 export async function getSiteStats(): Promise<SiteStat[]> {
   return [
-    { value: "250+", label: "Projects Delivered" },
-    { value: "85+", label: "Brands Grown" },
-    { value: "12+", label: "Industries" },
+    { value: "200+", label: "Meetings & Enquiries" },
     { value: "3.8X", label: "Average ROAS" },
+    { value: "43%", label: "Average Email Open Rate" },
+    { value: "27%", label: "LinkedIn Acceptance Rate" },
   ];
 }
 
@@ -497,39 +497,42 @@ const PLACEHOLDER_CASE_STUDIES: CaseStudy[] = [
 ];
 
 const PLACEHOLDER_SERVICES: Service[] = [
-  { number: "01", title: "Strategy", description: "Positioning, research, and a growth plan tied to real business outcomes, not vanity metrics." },
-  { number: "02", title: "Branding", description: "Identity systems built to hold up across every surface a brand actually lives on." },
-  { number: "03", title: "Social Media", description: "Always-on content and community management that moves at culture's speed." },
-  { number: "04", title: "Performance Marketing", description: "Paid media built around a disciplined test-and-scale framework, not spray-and-pray spend." },
-  { number: "05", title: "SEO", description: "Technical, local, and content SEO built for compounding organic growth." },
-  { number: "06", title: "Web Development", description: "Fast, editorial, CMS-driven websites built to convert as well as they look." },
-  { number: "07", title: "Content", description: "Editorial, video, and campaign content built around a real point of view." },
-  { number: "08", title: "Creative", description: "Design and art direction that makes a brand instantly recognizable, not interchangeable." },
+  { number: "01", title: "LinkedIn Outreach", description: "Connection and follow-up sequences built on Sales Navigator, written for decision-maker segments." },
+  { number: "02", title: "Email Marketing & Cold Email", description: "Cold and nurture email campaigns, from warmed sending setups to booked calendar calls." },
+  { number: "03", title: "SEO, AEO & GEO", description: "Technical and content SEO engineered to earn citations in AI Overviews, ChatGPT, Gemini and Perplexity." },
+  { number: "04", title: "Google Business Profile", description: "Profile optimisation, location pages and local citations that drive calls and local walk-ins." },
+  { number: "05", title: "Performance Marketing", description: "Meta and Google ad campaigns optimized for verified leads, low CPL and high ROAS." },
+  { number: "06", title: "Lead Verification & Qualification", description: "Integrated OTP SMS verification and form validation that eliminates spam leads completely." },
+  { number: "07", title: "CRM & Routing Automation", description: "Direct calendar booking and automated lead routing straight to your sales team's inbox and CRM." },
+  { number: "08", title: "Creative & Copywriting", description: "High-converting ad angles, cold email copy, and landing page architecture built for conversions." },
 ];
 
 const PLACEHOLDER_CLIENTS: Client[] = [
-  "Domino's", "Urbanest", "Carewell Clinics", "Loomkraft", "Brightpath Schools",
-  "Meridian", "Solstice Hotels", "Northgate Retail", "Verdant Foods", "Aster Finance",
+  "ThoughtSpot", "Numeric", "Riot Platforms", "UNA Fitness", "Digicomplish",
+  "Netciples", "Primrose School", "Aptibit", "Bootz To Heelz", "MPME Abrasives",
+  "Munshi OS", "Belt Conveyor Guarding", "Table Tutor", "Bell", "Check Point",
+  "Sparx Digital", "Baruni Solutions", "Slatt Capital", "Swopelees", "Hypertel Group",
+  "The Gate PM Management",
 ].map((name) => ({ name, logo: img(`photo-1560518883-ce09059eeffa`, 400, 200) }));
 
 const PLACEHOLDER_TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Grow N Foster didn't just execute the campaign. They understood the business problem behind it.",
-    name: "Anaya Kapoor",
-    designation: "Head of Marketing",
-    company: "Domino's India",
-  },
-  {
-    quote: "For the first time, our marketing felt as serious as our engineering.",
-    name: "Rohan Mehta",
+    quote: "Twinkle's SEO and AI search visibility strategy delivered 187,000+ monthly organic visitors and hundreds of citations across AI search engines.",
+    name: "Enterprise SaaS Lead",
     designation: "VP Marketing",
-    company: "Urbanest",
+    company: "ThoughtSpot",
   },
   {
-    quote: "They treated our twelve clinics like twelve real problems, not one campaign copy-pasted twelve times.",
-    name: "Dr. Sana Iyer",
-    designation: "Director of Growth",
-    company: "Carewell Clinics",
+    quote: "Integrating OTP verification into our real estate ads solved our fake lead issue overnight. Lead quality jumped to 95% verified buyers.",
+    name: "Senior Sales Director",
+    designation: "Acquisition Head",
+    company: "NCR Real Estate Developer",
+  },
+  {
+    quote: "A single targeted email nurture campaign with the $4,000 tuition offer brought 6 high-value families back for campus tours within weeks.",
+    name: "School Director",
+    designation: "Owner",
+    company: "Primrose School of Rockland, MA",
   },
 ];
 

@@ -4,8 +4,8 @@ import RevealText from "@/components/RevealText";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | Grow N Foster",
-  description: "Start a project with Grow N Foster.",
+  title: "Contact | Twinkle Singhal",
+  description: "Start a project or book a lead generation consultation with Twinkle Singhal.",
 };
 
 // Studio workspace images with verified Unsplash URLs
@@ -149,9 +149,9 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Email Us</p>
-                  <a href="mailto:hello@grownfoster.com" className="font-medium text-ink transition-colors hover:underline">
-                    hello@grownfoster.com
+                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Email</p>
+                  <a href="mailto:twinkasinghal8@gmail.com" className="font-medium text-ink transition-colors hover:underline">
+                    twinkasinghal8@gmail.com
                   </a>
                 </div>
               </div>
@@ -159,13 +159,13 @@ export default function ContactPage() {
               <div className="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-ink/5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink/5 text-ink transition-transform group-hover:scale-105">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Call Us</p>
-                  <a href="tel:+911234567890" className="font-medium text-ink transition-colors hover:underline">
-                    +91 12345 67890
+                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Upwork Profile</p>
+                  <a href="https://www.upwork.com/freelancers/~01a3b32123f9eff361?mp_source=share" target="_blank" rel="noopener noreferrer" className="font-medium text-ink transition-colors hover:underline">
+                    Hire on Upwork
                   </a>
                 </div>
               </div>
@@ -178,8 +178,8 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Headquarters</p>
-                  <p className="font-medium text-ink">Mumbai, India</p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Location</p>
+                  <p className="font-medium text-ink">India · Working with USA, UK, GCC &amp; Global Clients</p>
                 </div>
               </div>
             </div>

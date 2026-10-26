@@ -3,8 +3,8 @@ import ServiceList from "@/components/ServiceList";
 import RevealText from "@/components/RevealText";
 
 export const metadata = {
-  title: "Services | Grow N Foster",
-  description: "Our core capabilities in building measurable growth.",
+  title: "Services | Twinkle Singhal",
+  description: "Lead generation, LinkedIn outreach, cold email, SEO & AEO, and paid performance marketing capabilities.",
 };
 
 export default async function ServicesPage() {
@@ -15,13 +15,16 @@ export default async function ServicesPage() {
       <div className="mx-auto max-w-site px-6 md:px-10">
         {/* Header */}
         <div className="mb-20 md:mb-32 max-w-3xl">
+          <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">
+            HOW I GENERATE LEADS
+          </span>
           <RevealText
             as="h1"
-            lines={["What We Do"]}
+            lines={["Services that", "bring you leads"]}
             className="font-display text-5xl md:text-7xl lg:text-8xl text-ink uppercase tracking-tight"
           />
           <p className="mt-8 text-lg text-ink/70">
-            We build measurable growth for brands that refuse to look like everyone else.
+            Every service is a proven way to put qualified buyers in front of your business.
           </p>
         </div>
 

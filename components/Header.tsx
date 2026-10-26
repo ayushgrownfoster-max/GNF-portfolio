@@ -7,15 +7,15 @@ import clsx from "clsx";
 import MagneticButton from "./MagneticButton";
 
 const NAV_LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "Workflow", href: "/#workflow" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/contact" },
 ];
 
 /* ─── Logo typing pill ─── */
-const LOGO_TAGS = ["Case Studies", "Portfolio", "Branding", "SEO", "Social"];
+const LOGO_TAGS = ["Lead Gen", "LinkedIn", "Cold Email", "SEO & AEO", "Meta & Google Ads"];
 
 function useLogoTypewriter(phrases: string[], speed = 65, pause = 2200, del = 40) {
   const [text, setText] = useState("");
@@ -76,15 +76,15 @@ export default function Header() {
       <div className="mx-auto flex max-w-site items-center justify-between px-6 md:px-10">
         {/* Logo + typing tag */}
         <Link href="/" className="flex items-center gap-0 group">
-          <span className="font-display text-lg font-semibold tracking-tight">
-            Grow N&nbsp;Foster
+          <span className="font-display text-lg font-bold tracking-tight">
+            Twinkle Singhal<span className="text-accent-dim font-bold">.</span>
           </span>
           {/* Dot separator + typing pill */}
           <span className="ml-2 flex items-center gap-1.5 text-ink/40 text-sm font-medium transition-all">
             <span className="text-ink/25 font-bold">·</span>
             <span
               className="text-[11px] font-semibold tracking-wide text-ink/50 overflow-hidden whitespace-nowrap"
-              style={{ minWidth: "80px" }}
+              style={{ minWidth: "92px" }}
             >
               {logoTag}
               <span className="inline-block w-[1.5px] h-[0.85em] bg-ink/40 ml-0.5 align-middle animate-blink" />

@@ -22,19 +22,19 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.grownfoster.com"),
+  metadataBase: new URL("https://www.twinklesinghal.com"),
   title: {
-    default: "Grow N Foster — Creative & Digital Marketing Agency",
-    template: "%s | Grow N Foster",
+    default: "Twinkle Singhal — Lead Generation & Digital Marketing Specialist",
+    template: "%s | Twinkle Singhal",
   },
   description:
-    "Grow N Foster is a creative and digital marketing agency building measurable growth through branding, performance marketing, SEO, and creative campaigns.",
+    "Twinkle Singhal is a lead generation and digital marketing specialist with 10+ years of experience helping businesses scale through LinkedIn outreach, cold email, SEO, and paid performance ads.",
   openGraph: {
     type: "website",
-    siteName: "Grow N Foster",
-    title: "Grow N Foster — Creative & Digital Marketing Agency",
+    siteName: "Twinkle Singhal",
+    title: "Twinkle Singhal — Lead Generation & Digital Marketing Specialist",
     description:
-      "Creative thinking, digital expertise, and measurable business impact.",
+      "Qualified B2B leads, measured performance, and business growth across India, USA, UK, Canada & GCC.",
   },
   twitter: {
     card: "summary_large_image",

@@ -9,7 +9,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Grow N Foster is a creative and digital marketing agency focused on meaningful brand experiences, measurable growth, and strong digital identities.",
+    "Twinkle Singhal is a digital marketing and lead generation specialist with 10+ years of experience working with clients globally.",
 };
 
 export default async function AboutPage() {
@@ -19,17 +19,16 @@ export default async function AboutPage() {
     <>
       <section className="px-6 pb-20 pt-40 md:px-10">
         <div className="mx-auto max-w-site">
+          <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">
+            About Twinkle Singhal
+          </span>
           <RevealText
             as="h1"
-            lines={["We don't just market brands.", "We help them grow."]}
+            lines={["I don't just run campaigns.", "I help businesses grow."]}
             className="font-display text-display-lg text-balance"
           />
-          <p className="mt-10 max-w-2xl text-lg text-ink/60">
-            Grow N Foster is a creative and digital marketing agency focused
-            on creating meaningful brand experiences, measurable growth, and
-            strong digital identities. We're built for founders and marketing
-            teams who want a partner that treats every project like a
-            business problem first, a creative brief second.
+          <p className="mt-10 max-w-2xl text-lg text-ink/70 leading-relaxed">
+            I&apos;m Twinkle Singhal, a digital marketing specialist with 10+ years of experience working with clients across India, the USA, the UK, Canada, Australia, Dubai and the GCC. I believe in real client relationships. My own growth is tied to yours, so I plan carefully, keep you updated and focus on results you can measure.
           </p>
         </div>
       </section>
@@ -41,6 +40,11 @@ export default async function AboutPage() {
       </section>
 
       <section className="border-y border-ink/10 py-16">
+        <div className="mx-auto max-w-site px-6 md:px-10 mb-8">
+          <span className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/45 text-center">
+            BUSINESSES I HAVE WORKED WITH
+          </span>
+        </div>
         <ClientMarquee clients={clients} />
       </section>
 
@@ -48,18 +52,20 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-site grid grid-cols-1 gap-16 md:grid-cols-2">
           <div>
             <span className="mb-4 block text-xs font-medium uppercase tracking-[0.2em] text-ink/50">
-              How We Work
+              How I Work
             </span>
             <h2 className="font-display text-display-sm text-balance">
-              Strategy first. Craft always. No department silos.
+              Plan before action. Real relationships. Measured outcomes.
             </h2>
           </div>
-          <p className="text-ink/60">
-            Every case study starts with a business problem, not a channel.
-            Strategists, designers, and performance specialists sit on the
-            same team from day one — so the creative idea and the media plan
-            are built together, not stitched together after the fact.
-          </p>
+          <div className="space-y-4 text-ink/70 leading-relaxed">
+            <p>
+              Every project starts with an audit, a clear plan, and an agreed ideal customer. Whether structuring cold email domains, deploying Sales Navigator LinkedIn touchpoints, or scaling Meta and Google ad ROAS, I treat each channel like an accountable sales driver.
+            </p>
+            <p>
+              You always know what was done and what moved in plain language through weekly check-ins and monthly reporting.
+            </p>
+          </div>
         </div>
       </section>
     </>
