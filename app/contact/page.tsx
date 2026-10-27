@@ -206,93 +206,9 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* 1ST CAROUSEL: Studio Image Marquee */}
-      <div className="mt-16 w-full overflow-hidden border-y border-ink/10 bg-surface/30 py-4 shadow-inner">
-        <div className="animate-marquee-continuous flex gap-4">
-          {marqueeStudioImages.map((img, idx) => (
-            <div
-              key={`studio-${idx}`}
-              className="relative h-44 w-64 shrink-0 overflow-hidden rounded-xl border border-ink/10 bg-ink/5 shadow-sm"
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="256px"
-                unoptimized
-              />
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* 2ND CAROUSEL: Portfolio Case Studies Section */}
-      <div className="mx-auto max-w-site px-6 md:px-12 lg:px-20 mt-20">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-ink/50">
-              Portfolio Highlights
-            </span>
-            <h2 className="text-2xl font-display text-ink mt-1">
-              Explore recent client transformations
-            </h2>
-          </div>
-        </div>
 
-        {/* Continuous Infinite Scrolling Carousel */}
-        <div className="relative w-full overflow-hidden py-2">
-          <div className="animate-portfolio-continuous flex gap-6">
-            {marqueePortfolio.map((item, index) => (
-              <div
-                key={`portfolio-${item.id}-${index}`}
-                className="group relative flex w-[320px] md:w-[380px] shrink-0 flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface/40 p-3 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:border-ink/20"
-              >
-                {/* Card Image */}
-                <div className="relative h-52 w-full overflow-hidden rounded-xl bg-ink/5">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 320px, 380px"
-                    unoptimized
-                  />
-                  <div className="absolute top-3 left-3 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white">
-                      {item.category}
-                    </span>
-                  </div>
-                </div>
 
-                {/* Card Content & Text Description */}
-                <div className="flex flex-1 flex-col justify-between p-3 pt-4">
-                  <div>
-                    <h3 className="font-display text-lg font-medium text-ink transition-colors group-hover:text-accent">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink/70 line-clamp-3">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-ink/80 group-hover:text-ink">
-                    <span>View Case Study</span>
-                    <svg
-                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
